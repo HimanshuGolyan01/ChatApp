@@ -5,9 +5,9 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
-    const [name, setName] = useState();
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
     const onSubmitHandler = (e) => {
@@ -23,8 +23,8 @@ const SignUp = () => {
         })
         .then(response => {
             if (response.data.msg === 'new user added successfully') {
-                response.data.msg ? toast.success(response.data.msg) : "";
-                navigate('/login');
+                toast.success(response.data.msg);
+                navigate('/mainscreen');
             }
         })
         .catch(error => {
@@ -33,31 +33,45 @@ const SignUp = () => {
         });
     };
 
-    return(
-        <>
-            <form onSubmit={onSubmitHandler} className="flex items-center justify-center min-h-screen bg-gray-900">
-                <div className="h-auto w-[30rem] bg-gray-800 rounded-lg p-6 shadow-lg text-white">
-                    <div className="font-extrabold text-center text-[2rem] mb-6">Sign Up</div>
-                    <div className="flex flex-col mb-4">
-                        <label className="pl-1 font-semibold" htmlFor="name">Name</label>
-                        <input className="border-2 bg-gray-700 text-white rounded-md border-gray-600 pl-2 py-2" type="text" placeholder="Enter your name..." onChange={(e) => setName(e.target.value)}/>
-                    </div>
-                    <div className="flex flex-col mb-4">
-                        <label className="pl-1 font-semibold" htmlFor="email">Email</label>
-                        <input className="border-2 bg-gray-700 text-white rounded-md border-gray-600 pl-2 py-2" type="email" placeholder="Enter your email..." onChange={(e) => setEmail(e.target.value)}/>
-                    </div>
-                    <div className="flex flex-col mb-4">
-                        <label className="pl-1 font-semibold" htmlFor="password">Password</label>
-                        <input className="border-2 bg-gray-700 text-white rounded-md border-gray-600 pl-2 py-2" type="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)}/>
-                    </div>
-                    <div className="text-center text-blue-400 underline mb-4">
-                        <a href="/login">Already have an account?</a>
-                    </div>
-                    <button className="bg-blue-600 hover:bg-blue-700 w-full rounded-md p-3 text-white font-bold text-[1rem]">Sign Up</button>
+    return (
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-300 text-gray-900">
+            <form onSubmit={onSubmitHandler} className="w-[30rem] p-8 bg-white rounded-xl shadow-lg">
+                <h2 className="text-3xl font-extrabold text-center mb-6 text-gray-900">Sign Up</h2>
+                <div className="mb-4">
+                    <label className="block text-gray-700 font-semibold">Name</label>
+                    <input 
+                        className="w-full p-3 mt-2 bg-gray-200 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+                        type="text" 
+                        placeholder="Enter your name..." 
+                        onChange={(e) => setName(e.target.value)} 
+                    />
                 </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700 font-semibold">Email</label>
+                    <input 
+                        className="w-full p-3 mt-2 bg-gray-200 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+                        type="email" 
+                        placeholder="Enter your email..." 
+                        onChange={(e) => setEmail(e.target.value)} 
+                    />
+                </div>
+                <div className="mb-6">
+                    <label className="block text-gray-700 font-semibold">Password</label>
+                    <input 
+                        className="w-full p-3 mt-2 bg-gray-200 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+                        type="password" 
+                        placeholder="Enter your password" 
+                        onChange={(e) => setPassword(e.target.value)} 
+                    />
+                </div>
+                <div className="flex justify-between items-center text-sm mb-4">
+                    <a href="/login" className="text-indigo-500 hover:underline">Already have an account?</a>
+                </div>
+                <button className="w-full mt-6 p-3 bg-indigo-600 hover:bg-indigo-700 rounded-md font-bold text-white transition duration-300 ease-in-out transform hover:scale-105">Sign Up</button>
             </form>
-        </>
+            <p className="mt-6 text-gray-600 text-sm">A place to talk, a place to connect</p>
+        </div>
     );
-}
+};
 
 export default SignUp;

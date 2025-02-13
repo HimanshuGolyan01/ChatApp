@@ -24,7 +24,7 @@ const Login = () => {
                 localStorage.setItem('userId', response.data.uid);
                 localStorage.setItem("userName", response.data.name);
                 response.data.msg && toast.success(response.data.msg);
-                navigate('/mainscreen');
+                navigate('/signup');
             }
         })
         .catch(error => {
@@ -34,22 +34,24 @@ const Login = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
-            <form onSubmit={onSubmitHandler} className="w-[30rem] p-6 bg-gray-800 rounded-lg shadow-lg">
-                <h2 className="text-2xl font-extrabold text-center">Log In</h2>
-                <div className="mt-6">
-                    <label className="block font-semibold">Email</label>
-                    <input className="w-full p-2 mt-1 bg-gray-900 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" type="email" placeholder="Enter your email..." onChange={(e) => setEmail(e.target.value)} />
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-300 text-gray-900">
+            <form onSubmit={onSubmitHandler} className="w-[30rem] p-8 bg-white rounded-xl shadow-lg">
+                <h2 className="text-3xl font-extrabold text-center mb-6 text-gray-900">Welcome Back</h2>
+                <div className="mb-4">
+                    <label className="block text-gray-700 font-semibold">Email</label>
+                    <input className="w-full p-3 mt-2 bg-gray-200 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" type="email" placeholder="Enter your email..." onChange={(e) => setEmail(e.target.value)} />
                 </div>
-                <div className="mt-6">
-                    <label className="block font-semibold">Password</label>
-                    <input className="w-full p-2 mt-1 bg-gray-900 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" type="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} />
+                <div className="mb-6">
+                    <label className="block text-gray-700 font-semibold">Password</label>
+                    <input className="w-full p-3 mt-2 bg-gray-200 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" type="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} />
                 </div>
-                <div className="mt-6 text-center">
-                    <a href="/" className="text-blue-400 hover:underline">Create an Account!</a>
+                <div className="flex justify-between items-center text-sm">
+                    <a href="/forgot-password" className="text-indigo-500 hover:underline">Forgot Password?</a>
+                    <a href="/signup" className="text-indigo-500 hover:underline">Create an Account!</a>
                 </div>
-                <button className="w-full mt-4 p-2 bg-blue-600 hover:bg-blue-700 rounded-md font-bold text-white">Log In</button>
+                <button className="w-full mt-6 p-3 bg-indigo-600 hover:bg-indigo-700 rounded-md font-bold text-white transition duration-300 ease-in-out transform hover:scale-105">Log In</button>
             </form>
+            <p className="mt-6 text-gray-600 text-sm">Chat. Connect. Repeat.</p>
         </div>
     );
 };
